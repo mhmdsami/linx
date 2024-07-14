@@ -16,7 +16,7 @@ export default function Input({ style, ...props }: InputProps) {
           borderWidth: 1,
           borderColor: COLORS.highlight,
           fontFamily: "MonaSans-Medium",
-          width: "100%"
+          width: "100%",
         },
         style,
       ]}

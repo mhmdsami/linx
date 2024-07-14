@@ -11,7 +11,7 @@ export default function AppLayout() {
     },
     {
       name: "links",
-      title: "Links",
+      title: "My Links",
       icon: ICONS.link,
     },
   ];
@@ -22,6 +22,7 @@ export default function AppLayout() {
         tabBarStyle: {
           backgroundColor: COLORS.secondary,
           borderTopColor: COLORS.tertiary,
+          paddingTop: 10,
         },
       }}
     >
