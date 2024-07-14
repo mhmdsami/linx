@@ -1,4 +1,6 @@
 import { COLORS } from "@/constants";
+import * as Clipboard from "expo-clipboard";
+import * as SecureStore from "expo-secure-store";
 import { Copy } from "lucide-react-native";
 import { Text, View } from "react-native";
 
@@ -9,6 +11,8 @@ interface LinkCardProps {
 }
 
 export default function LinkCard({ url, code, clicks }: LinkCardProps) {
+  const domain = SecureStore.getItem("domain") || "";
+
   return (
     <View
       style={{
@@ -84,7 +88,11 @@ export default function LinkCard({ url, code, clicks }: LinkCardProps) {
             borderColor: COLORS.highlight,
           }}
         >
-          <Copy stroke={COLORS.text} size={20} />
+          <Copy
+            stroke={COLORS.text}
+            size={20}
+            onPress={() => Clipboard.setUrlAsync(`https://${domain}/${code}`)}
+          />
         </View>
       </View>
       <View
