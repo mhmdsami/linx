@@ -39,7 +39,8 @@
             "./assets/fonts/MonaSans-Light.ttf"
           ]
         }
-      ]
+      ],
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true

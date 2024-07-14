@@ -1,5 +1,6 @@
-import { Image, Text, View } from "react-native";
-import { COLORS, ICONS } from "@/constants";
+import { Text, View } from "react-native";
+import { COLORS } from "@/constants";
+import { Copy } from "lucide-react-native";
 
 interface LinkCardProps {
   url: string;
@@ -83,13 +84,7 @@ export default function LinkCard({ url, code, clicks }: LinkCardProps) {
             borderColor: COLORS.highlight,
           }}
         >
-          <Image
-            source={ICONS.copy}
-            resizeMode="contain"
-            style={{
-              width: 16,
-            }}
-          />
+          <Copy stroke={COLORS.text} size={20} />
         </View>
       </View>
       <View

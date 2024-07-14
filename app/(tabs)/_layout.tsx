@@ -1,20 +1,26 @@
-import { COLORS, ICONS } from "@/constants";
-import { Tabs } from "expo-router";
+import { COLORS } from "@/constants";
+import { Redirect, Tabs } from "expo-router";
 import { Image, View, Text } from "react-native";
+import * as SecureStore from "expo-secure-store";
+import { PlusCircle, Link2 } from "lucide-react-native";
 
 export default function AppLayout() {
   const tabs = [
     {
       name: "index",
       title: "Create",
-      icon: ICONS.add,
+      icon: <PlusCircle stroke={COLORS.text} />,
     },
     {
       name: "links",
       title: "My Links",
-      icon: ICONS.link,
+      icon: <Link2 stroke={COLORS.text} />,
     },
   ];
+
+  if (!SecureStore.getItem("token")) {
+    return <Redirect href="/config" />;
+  }
 
   return (
     <Tabs
@@ -44,13 +50,7 @@ export default function AppLayout() {
                   gap: 5,
                 }}
               >
-                <Image
-                  source={icon}
-                  resizeMode="contain"
-                  style={{
-                    width: 20,
-                  }}
-                />
+                {icon}
                 <Text
                   style={{
                     color: COLORS.text,

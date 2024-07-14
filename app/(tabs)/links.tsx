@@ -1,7 +1,9 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { COLORS, ICONS } from "@/constants";
+import { COLORS } from "@/constants";
 import LinkCard from "@/components/link-card";
+import { router } from "expo-router";
+import { Bolt } from "lucide-react-native";
 
 export default function Links() {
   const links = [
@@ -33,17 +35,29 @@ export default function Links() {
         backgroundColor: COLORS.primary,
       }}
     >
-      <Text
+      <View
         style={{
-          color: COLORS.text,
-          fontFamily: "MonaSans-Bold",
-          fontSize: 24,
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "space-between",
+          alignItems: "center",
           paddingTop: 10,
           paddingHorizontal: 20,
         }}
       >
-        My Links
-      </Text>
+        <Text
+          style={{
+            color: COLORS.text,
+            fontFamily: "MonaSans-Bold",
+            fontSize: 24,
+          }}
+        >
+          My Links
+        </Text>
+        <Pressable onPress={() => router.push("/config")}>
+          <Bolt stroke={COLORS.text} />
+        </Pressable>
+      </View>
       <ScrollView>
         <View
           style={{

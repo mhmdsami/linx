@@ -4,4 +4,5 @@ export default {
   tertiary: "#010409",
   highlight: "#30363d",
   text: "#fff",
+  danger: "#DA3633",
 };
