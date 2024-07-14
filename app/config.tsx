@@ -58,12 +58,12 @@ export default function Config() {
         throw new Error("Invalid domain");
       }
 
-      return data;
+      return domain;
     },
     onSuccess: () => {
       try {
-        setConfig(getValues());
-        router.push("/");
+        setConfig(configSchema.parse(getValues()));
+        router.replace("/");
       } catch (e) {
         console.error(e);
         alert("Error saving config");

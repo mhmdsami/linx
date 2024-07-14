@@ -40,7 +40,7 @@ export default function AppLayout() {
             title,
             headerShown: false,
             tabBarShowLabel: false,
-            tabBarIcon: ({ focused }) => (
+            tabBarIcon: () => (
               <View
                 style={{
                   display: "flex",
