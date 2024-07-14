@@ -1,8 +1,8 @@
 import { COLORS } from "@/constants";
 import { Redirect, Tabs } from "expo-router";
-import { Image, View, Text } from "react-native";
 import * as SecureStore from "expo-secure-store";
-import { PlusCircle, Link2 } from "lucide-react-native";
+import { Link2, PlusCircle } from "lucide-react-native";
+import { Text, View } from "react-native";
 
 export default function AppLayout() {
   const tabs = [

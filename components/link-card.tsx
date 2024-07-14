@@ -1,6 +1,6 @@
-import { Text, View } from "react-native";
 import { COLORS } from "@/constants";
 import { Copy } from "lucide-react-native";
+import { Text, View } from "react-native";
 
 interface LinkCardProps {
   url: string;

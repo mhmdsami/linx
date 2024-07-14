@@ -1,2 +1,2 @@
 export { default as COLORS } from "./color";
-export { STORAGE_KEYS, QUERY_KEYS } from "./keys";
+export { QUERY_KEYS, STORAGE_KEYS } from "./keys";

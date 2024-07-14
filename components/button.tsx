@@ -1,5 +1,5 @@
-import { Pressable, StyleProp, Text, ViewStyle } from "react-native";
 import { COLORS } from "@/constants";
+import { Pressable, StyleProp, Text, ViewStyle } from "react-native";
 
 interface ButtonProps extends React.ComponentProps<typeof Pressable> {
   children: string;

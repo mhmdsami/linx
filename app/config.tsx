@@ -1,15 +1,15 @@
-import { View, Text, Pressable, Image } from "react-native";
-import { router } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { COLORS, STORAGE_KEYS, QUERY_KEYS } from "@/constants";
-import Input from "@/components/input";
 import Button from "@/components/button";
-import { useMutation } from "@tanstack/react-query";
-import { Controller, useForm } from "react-hook-form";
-import * as SecureStore from "expo-secure-store";
+import Input from "@/components/input";
+import { COLORS, QUERY_KEYS, STORAGE_KEYS } from "@/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
+import { useMutation } from "@tanstack/react-query";
+import { router } from "expo-router";
+import * as SecureStore from "expo-secure-store";
 import { PlusCircle } from "lucide-react-native";
+import { Controller, useForm } from "react-hook-form";
+import { Pressable, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { z } from "zod";
 
 export default function Config() {
   const configSchema = z.object({

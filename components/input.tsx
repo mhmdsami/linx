@@ -1,5 +1,5 @@
-import { TextInput } from "react-native";
 import { COLORS } from "@/constants";
+import { TextInput } from "react-native";
 
 interface InputProps extends React.ComponentProps<typeof TextInput> {}
 

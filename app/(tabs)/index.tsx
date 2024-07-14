@@ -1,8 +1,8 @@
+import Button from "@/components/button";
+import Input from "@/components/input";
+import { COLORS } from "@/constants";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { COLORS } from "@/constants";
-import Input from "@/components/input";
-import Button from "@/components/button";
 
 export default function Index() {
   return (

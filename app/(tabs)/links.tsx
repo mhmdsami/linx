@@ -1,9 +1,9 @@
-import { Image, Pressable, ScrollView, Text, View } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { COLORS } from "@/constants";
 import LinkCard from "@/components/link-card";
+import { COLORS } from "@/constants";
 import { router } from "expo-router";
 import { Bolt } from "lucide-react-native";
+import { Pressable, ScrollView, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Links() {
   const links = [
