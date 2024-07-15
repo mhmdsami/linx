@@ -29,6 +29,8 @@ export default function AppLayout() {
           backgroundColor: COLORS.secondary,
           borderTopColor: COLORS.tertiary,
           paddingTop: 10,
+          paddingBottom: 20,
+          height: 70,
         },
       }}
     >

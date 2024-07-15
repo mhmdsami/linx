@@ -8,11 +8,9 @@ export default function RootLayout() {
   SplashScreen.preventAutoHideAsync();
 
   const [loaded, error] = useFonts({
-    "MonaSans-Regular": require("../assets/fonts/MonaSans-Regular.otf"),
     "MonaSans-Bold": require("../assets/fonts/MonaSans-Bold.otf"),
     "MonaSans-Medium": require("../assets/fonts/MonaSans-Medium.otf"),
     "MonaSans-SemiBold": require("../assets/fonts/MonaSans-SemiBold.otf"),
-    "MonaSans-Light": require("../assets/fonts/MonaSans-Light.otf"),
   });
 
   useEffect(() => {

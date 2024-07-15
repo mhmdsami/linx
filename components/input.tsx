@@ -20,6 +20,7 @@ export default function Input({ style, ...props }: InputProps) {
         },
         style,
       ]}
+      placeholderTextColor={COLORS.placeholder}
       {...props}
     />
   );
