@@ -15,3 +15,9 @@ web-build/
 
 # Expo
 expo-env.d.ts
+
+android/
+ios/
+
+.idea/
+.vscode/

@@ -13,13 +13,15 @@
       "backgroundColor": "#0D1117"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.sami.linx"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#0D1117"
-      }
+      },
+      "package": "com.sami.linx"
     },
     "web": {
       "bundler": "metro",
@@ -32,11 +34,9 @@
         "expo-font",
         {
           "fonts": [
-            "./assets/fonts/MonaSans-Regular.ttf",
-            "./assets/fonts/MonaSans-Bold.ttf",
-            "./assets/fonts/MonaSans-Medium.ttf",
-            "./assets/fonts/MonaSans-SemiBold.ttf",
-            "./assets/fonts/MonaSans-Light.ttf"
+            "./assets/fonts/MonaSans-Bold.otf",
+            "./assets/fonts/MonaSans-Medium.otf",
+            "./assets/fonts/MonaSans-SemiBold.otf"
           ]
         }
       ],
