@@ -1,12 +1,13 @@
 import LinkCard from "@/components/link-card";
 import { COLORS, QUERY_KEYS } from "@/constants";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { router } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import { Bolt } from "lucide-react-native";
 import {
   ActivityIndicator,
   Pressable,
+  RefreshControl,
   ScrollView,
   Text,
   View,
@@ -25,7 +26,11 @@ export default function Links() {
     updatedAt: string;
   };
 
-  const { data: links, isLoading } = useQuery({
+  const {
+    data: links,
+    isLoading,
+    isRefetching,
+  } = useQuery({
     queryKey: [QUERY_KEYS.LINKS],
     queryFn: async () => {
       if (!token || !domain) {
@@ -46,7 +51,14 @@ export default function Links() {
       }
     },
     enabled: !!token && !!domain,
+    refetchInterval: 1000 * 60 * 5,
   });
+
+  const queryClient = useQueryClient();
+
+  const onRefresh = () => {
+    queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.LINKS] });
+  };
 
   if (isLoading) {
     return (
@@ -123,7 +135,11 @@ export default function Links() {
           <Bolt stroke={COLORS.text} />
         </Pressable>
       </View>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={isRefetching} onRefresh={onRefresh} />
+        }
+      >
         <View
           style={{
             display: "flex",
