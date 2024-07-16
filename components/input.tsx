@@ -19,7 +19,7 @@ const Input = forwardRef<TextInput, InputProps>(
               backgroundColor: COLORS.secondary,
               color: COLORS.text,
               paddingHorizontal: 15,
-              paddingVertical: 10,
+              paddingVertical: 12,
               borderRadius: 10,
               borderWidth: 1,
               borderColor: errorMessage ? COLORS.danger : COLORS.highlight,
