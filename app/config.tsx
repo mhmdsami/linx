@@ -13,13 +13,16 @@ import { z } from "zod";
 
 export default function Config() {
   const configSchema = z.object({
-    token: z.string().min(1, { message: "Token is required "}),
+    token: z.string().min(1, { message: "Token is required " }),
     domain: z
       .string()
       .min(1, { message: "Domain is required" })
       .url({ message: "Enter a valid domain" })
       .transform((url) => new URL(url).hostname),
   });
+
+  const token = SecureStore.getItem("token");
+  const domain = SecureStore.getItem("domain");
 
   const {
     control,
@@ -29,8 +32,8 @@ export default function Config() {
     setValue,
   } = useForm({
     defaultValues: {
-      token: SecureStore.getItem("token") || "",
-      domain: `https://${SecureStore.getItem("domain")}` || "",
+      token: token || "",
+      domain: domain ? `https://${domain}` : "",
     },
     resolver: zodResolver(configSchema),
     mode: "onChange",
@@ -48,7 +51,7 @@ export default function Config() {
     SecureStore.deleteItemAsync(STORAGE_KEYS.DOMAIN);
   };
 
-  const { mutate: validate, isPending } = useMutation({
+  const { mutate: validate, isPending: isValidating } = useMutation({
     mutationKey: [QUERY_KEYS.CONFIG],
     mutationFn: async (domain: string) => {
       const res = await fetch(`https://${domain}/`);
@@ -160,7 +163,7 @@ export default function Config() {
             </Button>
             <Button
               onPress={handleSubmit(({ domain }) => validate(domain))}
-              disabled={!isValid || isPending}
+              disabled={!isValid || isValidating}
             >
               Validate & Save
             </Button>
