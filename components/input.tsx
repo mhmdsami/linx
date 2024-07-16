@@ -19,7 +19,7 @@ const Input = forwardRef<TextInput, InputProps>(
               backgroundColor: COLORS.secondary,
               color: COLORS.text,
               paddingHorizontal: 15,
-              paddingVertical: 12,
+              paddingVertical: 10,
               borderRadius: 10,
               borderWidth: 1,
               borderColor: errorMessage ? COLORS.danger : COLORS.highlight,
@@ -37,6 +37,7 @@ const Input = forwardRef<TextInput, InputProps>(
             fontFamily: "MonaSans-Medium",
             fontSize: 12,
             marginTop: 5,
+            display: errorMessage ? "flex" : "none",
           }}
         >
           {errorMessage}
