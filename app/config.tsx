@@ -13,11 +13,11 @@ import { z } from "zod";
 
 export default function Config() {
   const configSchema = z.object({
-    token: z.string().min(1),
+    token: z.string().min(1, { message: "Token is required "}),
     domain: z
       .string()
-      .min(1)
-      .url()
+      .min(1, { message: "Domain is required" })
+      .url({ message: "Enter a valid domain" })
       .transform((url) => new URL(url).hostname),
   });
 
@@ -25,15 +25,15 @@ export default function Config() {
     control,
     handleSubmit,
     getValues,
-    formState: { isValid },
+    formState: { isValid, errors },
     setValue,
-    watch,
   } = useForm({
     defaultValues: {
       token: SecureStore.getItem("token") || "",
-      domain: SecureStore.getItem("domain") || "",
+      domain: `https://${SecureStore.getItem("domain")}` || "",
     },
     resolver: zodResolver(configSchema),
+    mode: "onChange",
   });
 
   const setConfig = ({ token, domain }: z.infer<typeof configSchema>) => {
@@ -101,7 +101,7 @@ export default function Config() {
         >
           Config
         </Text>
-        {watch("token") && watch("domain") && (
+        {getValues("token") && getValues("domain") && (
           <Pressable onPress={() => router.push("/")}>
             <PlusCircle stroke={COLORS.text} />
           </Pressable>
@@ -130,7 +130,8 @@ export default function Config() {
               <Input
                 placeholder="DOMAIN"
                 onChangeText={field.onChange}
-                value={field.value}
+                errorMessage={errors.domain?.message}
+                {...field}
               />
             )}
           />
@@ -141,7 +142,8 @@ export default function Config() {
               <Input
                 placeholder="TOKEN"
                 onChangeText={field.onChange}
-                value={field.value}
+                errorMessage={errors.token?.message}
+                {...field}
               />
             )}
           />
