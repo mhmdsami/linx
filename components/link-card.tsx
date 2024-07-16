@@ -1,4 +1,4 @@
-import { COLORS, QUERY_KEYS } from "@/constants";
+import { COLORS, QUERY_KEYS, STORAGE_KEYS } from "@/constants";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as Clipboard from "expo-clipboard";
 import * as SecureStore from "expo-secure-store";
@@ -12,8 +12,8 @@ interface LinkCardProps {
 }
 
 export default function LinkCard({ url, code, clicks }: LinkCardProps) {
-  const domain = SecureStore.getItem("domain") || "";
-  const token = SecureStore.getItem("token") || "";
+  const domain = SecureStore.getItem(STORAGE_KEYS.DOMAIN) || "";
+  const token = SecureStore.getItem(STORAGE_KEYS.TOKEN) || "";
 
   const queryClient = useQueryClient();
   const { mutate: deleteLink, isPending } = useMutation({

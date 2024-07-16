@@ -21,8 +21,8 @@ export default function Config() {
       .transform((url) => new URL(url).hostname),
   });
 
-  const token = SecureStore.getItem("token");
-  const domain = SecureStore.getItem("domain");
+  const token = SecureStore.getItem(STORAGE_KEYS.TOKEN);
+  const domain = SecureStore.getItem(STORAGE_KEYS.DOMAIN);
 
   const {
     control,

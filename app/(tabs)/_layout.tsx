@@ -1,4 +1,4 @@
-import { COLORS } from "@/constants";
+import { COLORS, STORAGE_KEYS } from "@/constants";
 import { Redirect, Tabs } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import { Link2, PlusCircle } from "lucide-react-native";
@@ -18,7 +18,7 @@ export default function AppLayout() {
     },
   ];
 
-  if (!SecureStore.getItem("token")) {
+  if (!SecureStore.getItem(STORAGE_KEYS.TOKEN)) {
     return <Redirect href="/config" />;
   }
 

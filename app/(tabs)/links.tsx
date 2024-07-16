@@ -1,5 +1,5 @@
 import LinkCard from "@/components/link-card";
-import { COLORS, QUERY_KEYS } from "@/constants";
+import { COLORS, QUERY_KEYS, STORAGE_KEYS } from "@/constants";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { router } from "expo-router";
 import * as SecureStore from "expo-secure-store";
@@ -15,8 +15,8 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Links() {
-  const token = SecureStore.getItem("token");
-  const domain = SecureStore.getItem("domain");
+  const token = SecureStore.getItem(STORAGE_KEYS.TOKEN);
+  const domain = SecureStore.getItem(STORAGE_KEYS.DOMAIN);
 
   type Link = {
     url: string;

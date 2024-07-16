@@ -1,6 +1,6 @@
 import Button from "@/components/button";
 import Input from "@/components/input";
-import { COLORS, QUERY_KEYS } from "@/constants";
+import { COLORS, QUERY_KEYS, STORAGE_KEYS } from "@/constants";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as SecureStore from "expo-secure-store";
@@ -10,8 +10,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { z } from "zod";
 
 export default function Index() {
-  const domain = SecureStore.getItem("domain") || "";
-  const token = SecureStore.getItem("token") || "";
+  const domain = SecureStore.getItem(STORAGE_KEYS.DOMAIN) || "";
+  const token = SecureStore.getItem(STORAGE_KEYS.TOKEN) || "";
 
   const createLinkSchema = z.object({
     url: z.string().url(),
