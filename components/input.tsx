@@ -1,6 +1,6 @@
 import { COLORS } from "@/constants";
 import { forwardRef } from "react";
-import { TextInput, View, Text } from "react-native";
+import { Text, TextInput, View } from "react-native";
 
 interface InputProps extends React.ComponentProps<typeof TextInput> {
   errorMessage?: string;
@@ -9,9 +9,11 @@ interface InputProps extends React.ComponentProps<typeof TextInput> {
 const Input = forwardRef<TextInput, InputProps>(
   ({ style, errorMessage, ...props }, ref) => {
     return (
-      <View style={{
-        width: "100%",
-      }}>
+      <View
+        style={{
+          width: "100%",
+        }}
+      >
         <TextInput
           ref={ref}
           style={[
