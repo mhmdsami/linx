@@ -1,7 +1,8 @@
-import { COLORS } from "@/constants";
+import { COLORS, QUERY_KEYS } from "@/constants";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as Clipboard from "expo-clipboard";
 import * as SecureStore from "expo-secure-store";
-import { Copy } from "lucide-react-native";
+import { Copy, Trash } from "lucide-react-native";
 import { Platform, Text, View } from "react-native";
 
 interface LinkCardProps {
@@ -12,6 +13,27 @@ interface LinkCardProps {
 
 export default function LinkCard({ url, code, clicks }: LinkCardProps) {
   const domain = SecureStore.getItem("domain") || "";
+  const token = SecureStore.getItem("token") || "";
+
+  const queryClient = useQueryClient();
+  const { mutate: deleteLink, isPending } = useMutation({
+    mutationKey: [QUERY_KEYS.DELETE],
+    mutationFn: async (code: string) => {
+      try {
+        const res = await fetch(`https://${domain}/admin/link/${code}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }).then((res) => res.json());
+      } catch (error) {
+        console.error(error);
+      }
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.LINKS] });
+    },
+  });
 
   return (
     <View
@@ -68,7 +90,7 @@ export default function LinkCard({ url, code, clicks }: LinkCardProps) {
               color: COLORS.text,
               fontFamily: "MonaSans-SemiBold",
               overflow: "hidden",
-              maxWidth: "85%",
+              maxWidth: "70%",
               height: 20,
             }}
           >
@@ -97,6 +119,27 @@ export default function LinkCard({ url, code, clicks }: LinkCardProps) {
               } else {
                 Clipboard.setString(`https://${domain}/${code}`);
               }
+            }}
+          />
+        </View>
+        <View
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: COLORS.tertiary,
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+            borderRadius: 10,
+            borderWidth: 1,
+            borderColor: COLORS.highlight,
+          }}
+        >
+          <Trash
+            stroke={COLORS.danger}
+            size={20}
+            onPress={() => {
+              deleteLink(code);
             }}
           />
         </View>
