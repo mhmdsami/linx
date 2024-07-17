@@ -9,7 +9,8 @@ import { router, useLocalSearchParams } from "expo-router";
 import * as SecureStore from "expo-secure-store";
 import { X } from "lucide-react-native";
 import { Controller, useForm } from "react-hook-form";
-import { SafeAreaView, Text, View } from "react-native";
+import { Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { z } from "zod";
 
 export default function EditLink() {
