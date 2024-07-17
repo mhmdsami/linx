@@ -10,7 +10,7 @@ import { Controller, useForm } from "react-hook-form";
 import { Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { z } from "zod";
-import { showInfo } from "./utils";
+import { showInfo } from "@/utils";
 
 export default function Config() {
   const configSchema = z.object({

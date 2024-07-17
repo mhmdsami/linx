@@ -8,4 +8,5 @@ export const QUERY_KEYS = {
   LINKS: "links",
   CREATE: "create",
   DELETE: "delete",
+  UPDATE: "update",
 } as const;

@@ -1,3 +1,4 @@
+import { Link } from "@/utils/types";
 import LinkCard from "@/components/link-card";
 import { COLORS, QUERY_KEYS, STORAGE_KEYS } from "@/constants";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -17,14 +18,6 @@ import { SafeAreaView } from "react-native-safe-area-context";
 export default function Links() {
   const token = SecureStore.getItem(STORAGE_KEYS.TOKEN);
   const domain = SecureStore.getItem(STORAGE_KEYS.DOMAIN);
-
-  type Link = {
-    url: string;
-    code: string;
-    clicks: number;
-    createdAt: string;
-    updatedAt: string;
-  };
 
   const {
     data: links,

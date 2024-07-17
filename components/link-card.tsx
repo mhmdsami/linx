@@ -1,9 +1,10 @@
-import { showInfo } from "@/app/utils";
+import { showInfo } from "@/utils";
 import { COLORS, QUERY_KEYS, STORAGE_KEYS } from "@/constants";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as Clipboard from "expo-clipboard";
+import { router } from "expo-router";
 import * as SecureStore from "expo-secure-store";
-import { Copy, Trash } from "lucide-react-native";
+import { Copy, Pencil, Trash } from "lucide-react-native";
 import { Platform, Text, View } from "react-native";
 
 interface LinkCardProps {
@@ -85,6 +86,7 @@ export default function LinkCard({ url, code, clicks }: LinkCardProps) {
             borderColor: COLORS.highlight,
             borderWidth: 1,
             flexGrow: 1,
+            maxWidth: "70%",
           }}
         >
           <Text
@@ -92,12 +94,51 @@ export default function LinkCard({ url, code, clicks }: LinkCardProps) {
               color: COLORS.text,
               fontFamily: "MonaSans-SemiBold",
               overflow: "hidden",
-              maxWidth: "70%",
               height: 20,
             }}
           >
             {code}
           </Text>
+        </View>
+        <View
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: COLORS.tertiary,
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+            borderRadius: 10,
+            borderWidth: 1,
+            borderColor: COLORS.highlight,
+          }}
+        >
+          <Trash
+            stroke={COLORS.danger}
+            size={20}
+            onPress={() => {
+              deleteLink(code);
+            }}
+          />
+        </View>
+        <View
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: COLORS.tertiary,
+            paddingHorizontal: 10,
+            paddingVertical: 5,
+            borderRadius: 10,
+            borderWidth: 1,
+            borderColor: COLORS.highlight,
+          }}
+        >
+          <Pencil
+            stroke={COLORS.text}
+            size={20}
+            onPress={() => router.push(`/links/${code}`)}
+          />
         </View>
         <View
           style={{
@@ -119,29 +160,8 @@ export default function LinkCard({ url, code, clicks }: LinkCardProps) {
               if (Platform.OS === "ios") {
                 Clipboard.setUrlAsync(`https://${domain}/${code}`);
               } else {
-                Clipboard.setString(`https://${domain}/${code}`);
+                Clipboard.setStringAsync(`https://${domain}/${code}`);
               }
-            }}
-          />
-        </View>
-        <View
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            backgroundColor: COLORS.tertiary,
-            paddingHorizontal: 10,
-            paddingVertical: 5,
-            borderRadius: 10,
-            borderWidth: 1,
-            borderColor: COLORS.highlight,
-          }}
-        >
-          <Trash
-            stroke={COLORS.danger}
-            size={20}
-            onPress={() => {
-              deleteLink(code);
             }}
           />
         </View>
