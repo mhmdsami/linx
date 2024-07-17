@@ -10,6 +10,7 @@ import { Controller, useForm } from "react-hook-form";
 import { Pressable, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { z } from "zod";
+import { showInfo } from "./utils";
 
 export default function Config() {
   const configSchema = z.object({
@@ -69,13 +70,11 @@ export default function Config() {
         router.replace("/");
       } catch (e) {
         console.error(e);
-        alert("Error saving config");
+        showInfo("Error saving config");
       }
-      alert("Config saved");
+      showInfo("Config saved");
     },
-    onError: () => {
-      alert("Invalid domain");
-    },
+    onError: () => showInfo("Invalid domain"),
   });
 
   return (

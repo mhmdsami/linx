@@ -8,6 +8,7 @@ import { Controller, useForm } from "react-hook-form";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { z } from "zod";
+import { showInfo } from "../utils";
 
 export default function Index() {
   const domain = SecureStore.getItem(STORAGE_KEYS.DOMAIN) || "";
@@ -51,7 +52,7 @@ export default function Index() {
     },
     onSuccess: () => {
       reset();
-      alert("Link created");
+      showInfo("Link created");
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.LINKS] });
     },
     onError: (error) => {

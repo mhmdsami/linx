@@ -1,3 +1,4 @@
+import { showInfo } from "@/app/utils";
 import { COLORS, QUERY_KEYS, STORAGE_KEYS } from "@/constants";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import * as Clipboard from "expo-clipboard";
@@ -31,6 +32,7 @@ export default function LinkCard({ url, code, clicks }: LinkCardProps) {
       }
     },
     onSuccess: () => {
+      showInfo("Link deleted");
       queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.LINKS] });
     },
   });
