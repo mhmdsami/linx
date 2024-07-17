@@ -96,7 +96,6 @@ export default function EditLink() {
             color: COLORS.text,
             fontSize: 20,
             textAlign: "center",
-            marginTop: 20,
             fontFamily: "MonaSans-Bold",
           }}
         >
@@ -106,7 +105,6 @@ export default function EditLink() {
           style={{
             position: "absolute",
             right: 20,
-            top: 20,
           }}
         >
           {isPresented && (
@@ -116,9 +114,10 @@ export default function EditLink() {
       </View>
       <View
         style={{
-          display: "flex",
+          flex: 1,
           padding: 20,
           gap: 10,
+          justifyContent: "center",
         }}
       >
         <View
